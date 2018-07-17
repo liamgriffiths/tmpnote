@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import stateful from '../lib/stateful'
 import { decrypt } from '../lib/crypto'
@@ -99,6 +100,7 @@ const Screen: (Props) => React$Element<*>
 const ReadNote: (Props) => React$Element<*>
 = (props) => (
   <Page>
+    <Helmet title="tmp/note - Create & share encrypted notes" />
     <Container>
       <Logo />
       <Screen {...props} />

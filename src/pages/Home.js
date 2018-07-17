@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import stateful from '../lib/stateful'
 
@@ -60,6 +61,7 @@ const onModalButtonClick = (update) => (e) => {
 const Home: (Props) => React$Element<*>
 = ({ update, state }) => (
   <Page>
+    <Helmet title="tmp/note - Create & share encrypted notes" />
     <Container>
       <Logo />
       <Message

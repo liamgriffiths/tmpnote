@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { readableColor } from 'polished'
 
@@ -65,6 +66,7 @@ const ColorRange: ({ color: (number) => string }) => *
 const Patterns: () => React$Element<*>
 = (props) => (
   <Page>
+    <Helmet title="tmp/note - Create & share encrypted notes" />
     <Container>
       <Section>
         <Title>Theme</Title>
