@@ -82,9 +82,8 @@ const Screen: (Props) => React$Element<*>
   switch (state.screen) {
     case 'initial':
       fetchNote(params.id, hash.slice(1))
-      return <h1>going to fetch</h1>
     case 'fetching':
-      return <h1>fetching now</h1>
+      return <div />
     case 'fetched':
       return <Note.Show note={state.note} />
     case 'error':
