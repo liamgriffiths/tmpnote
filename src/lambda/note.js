@@ -13,7 +13,7 @@ const create = async ({ note }) => {
   console.log('create', Date.now())
   const id = uuid()
   await redis.set(key(id), note, 'NX', 'EX', ONE_WEEK)
-  return { id }
+  return `{ "id": "${id}" }`
 }
 
 const destroy = async ({ id }) => {
@@ -55,7 +55,7 @@ export const handler = (event, context, callback) => {
         console.log('success', Date.now())
         callback(null, {
           statusCode: 200,
-          body: JSON.stringify(res)
+          body: res,
         })
       })
       .catch((err) => {
