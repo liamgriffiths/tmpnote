@@ -148,7 +148,7 @@ const Patterns: () => React$Element<*>
 
         <Label>CopyLink</Label>
         <Example>
-          <Molecules.CopyLink readOnly link="http://google.com" />
+          <Molecules.CopyLink link="http://google.com" />
         </Example>
       </Section>
 
