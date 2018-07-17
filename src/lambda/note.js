@@ -10,26 +10,22 @@ const key = (uuid) => (
 )
 
 const create = async ({ note }) => {
-  console.log('create', Date.now())
   const id = uuid()
   await redis.set(key(id), note, 'NX', 'EX', ONE_WEEK)
   return { id }
 }
 
 const destroy = async ({ id }) => {
-  console.log('destroy', Date.now())
   await redis.del(key(id))
   return { status: 'ok' }
 }
 
 const read = async ({ id }) => {
-  console.log('read', Date.now())
   const [[_1, note], _2] = await redis.multi().get(key(id)).del(key(id)).exec()
   return { note }
 }
 
 const handlePost = async (event) => {
-  console.log('handlePost', Date.now())
   try {
     const { action, payload } = JSON.parse(event.body)
     switch (action) {
@@ -48,27 +44,23 @@ const handlePost = async (event) => {
 }
 
 export const handler = (event, context, callback) => {
-  console.log('handler', Date.now())
   if (event.httpMethod === 'POST') {
     handlePost(event)
       .then((res) => {
-        redis.quit()
-        console.log('success', Date.now())
+        redis.disconnect()
         callback(null, {
           statusCode: 200,
           body: JSON.stringify(res),
         })
       })
       .catch((err) => {
-        redis.quit()
-        console.log('error', Date.now())
+        redis.disconnect()
         callback(null, {
           statusCode: 500,
           body: 'Something went wrong.',
         })
       })
   } else {
-    redis.quit()
     callback(null, {
       statusCode: 400,
       body: 'Not allowed.',
