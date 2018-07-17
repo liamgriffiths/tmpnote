@@ -2,7 +2,6 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import { opacify } from 'polished'
 import stateful from '../lib/stateful'
 import { encrypt } from '../lib/crypto'
 import * as api from '../lib/api'
@@ -14,7 +13,7 @@ const Page: (*) => React$Element<*>
 = styled.div`
   height: 100vh;
   overflow-y: hidden;
-  background: ${props => opacify(1, props.theme.primary(100))};
+  background: ${props => props.theme.primary(100)};
 `
 
 const Container: (*) => React$Element<*>

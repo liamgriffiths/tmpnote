@@ -16,6 +16,7 @@ class App extends Component<*> {
             <Route exact path="/" component={Pages.Home} />
             <Route exact path="/n/:id" component={Pages.ReadNote} />
             <Route exact path="/patterns" component={Pages.Patterns} />
+            <Route component={Pages.NotFound} />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>
