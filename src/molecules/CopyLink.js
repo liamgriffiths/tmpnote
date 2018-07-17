@@ -43,7 +43,7 @@ const handleSubmit: (Update<State>) => (*) => void
 const CopyLink: (Props) => React$Element<*>
 = ({ link, update, state }) => (
   <Container>
-    <Message title="Created!" body="Share the following link." />
+    <Message title="Created ✨" body="Share the following link." />
     <StaticInput readOnly value={link} />
     <Button primary onClick={handleSubmit(update)}>
       { state === 'initial' ? 'Copy' : 'Copied' }
