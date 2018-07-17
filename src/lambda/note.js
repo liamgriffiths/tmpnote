@@ -1,7 +1,7 @@
 // todo: add flow
 const uuid = require('uuid/v4')
 const Redis = require('ioredis')
-const redis = new Redis()
+const redis = new Redis(process.env.REDIS_URL)
 
 const ONE_WEEK = 604800
 
