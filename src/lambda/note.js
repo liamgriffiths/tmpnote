@@ -13,7 +13,7 @@ const create = async ({ note }) => {
   console.log('create', Date.now())
   const id = uuid()
   await redis.set(key(id), note, 'NX', 'EX', ONE_WEEK)
-  return `{ "id": "${id}" }`
+  return { id }
 }
 
 const destroy = async ({ id }) => {
@@ -52,13 +52,15 @@ export const handler = (event, context, callback) => {
   if (event.httpMethod === 'POST') {
     handlePost(event)
       .then((res) => {
+        redis.quit()
         console.log('success', Date.now())
         callback(null, {
           statusCode: 200,
-          body: res,
+          body: JSON.stringify(res),
         })
       })
       .catch((err) => {
+        redis.quit()
         console.log('error', Date.now())
         callback(null, {
           statusCode: 500,
@@ -66,6 +68,7 @@ export const handler = (event, context, callback) => {
         })
       })
   } else {
+    redis.quit()
     callback(null, {
       statusCode: 400,
       body: 'Not allowed.',
