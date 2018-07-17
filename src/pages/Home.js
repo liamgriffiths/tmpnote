@@ -11,13 +11,20 @@ import { NewNote } from './index'
 
 import type { Update } from '../lib/stateful'
 
+const PageContainer: (*) => React$Element<*>
+= styled.div`
+  position: fixed;
+  height: 100vh;
+  overflow-y: hidden;
+  max-height: 100%;
+  width: 100vw;
+`
+
 const Page: (*) => React$Element<*>
 = styled.div`
   position: relative;
+  height: 100%;
   display: flex;
-  height: 100vh;
-  max-height: 100%;
-  overflow-y: hidden;
   background: ${props => props.theme.primary(100)};
 `
 
@@ -60,21 +67,23 @@ const onModalButtonClick = (update) => (e) => {
 
 const Home: (Props) => React$Element<*>
 = ({ update, state }) => (
-  <Page>
-    <Helmet title="tmp/note - Create & share encrypted notes" />
-    <Container>
-      <Logo />
-      <Message
-        title="Create & Share Encrypted Notes"
-        body={text} />
-      <Button primary onClick={onModalButtonClick(update)}>
-        New Note
-      </Button>
-    </Container>
+  <PageContainer>
+    <Page>
+      <Helmet title="tmp/note - Create & share encrypted notes" />
+      <Container>
+        <Logo />
+        <Message
+          title="Create & Share Encrypted Notes"
+          body={text} />
+        <Button primary onClick={onModalButtonClick(update)}>
+          New Note
+        </Button>
+      </Container>
+    </Page>
     <Modal onClose={() => update('initial')} active={state === 'modal-open'}>
       <NewNote />
     </Modal>
-  </Page>
+  </PageContainer>
 )
 
 export default stateful('initial')(Home)

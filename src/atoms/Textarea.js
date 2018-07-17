@@ -5,8 +5,6 @@ import styled, { css } from 'styled-components'
 const Textarea: (*) => *
 = styled.textarea`
   cursor: initial;
-  user-select: none;
-  outline: none;
 
   color: ${props => props.theme.black};
 
@@ -14,7 +12,6 @@ const Textarea: (*) => *
   line-height: 1.5;
   font-weight: 500;
 
-  display: inline-block;
   padding: 11px;
   margin: 0;
   width: 100%;
