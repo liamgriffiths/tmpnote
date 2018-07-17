@@ -12,12 +12,12 @@ const Textarea: (*) => *
   line-height: 1.5;
   font-weight: 500;
 
-  padding: 11px;
+  padding: 13px;
   margin: 0;
   width: 100%;
 
   background: ${props => props.theme.white};
-  border: 2px solid ${props => props.theme.white};
+  border: 0;
   border-radius: 3px;
   box-shadow: 0 10px 10px -10px ${props => props.theme.shadow};
 

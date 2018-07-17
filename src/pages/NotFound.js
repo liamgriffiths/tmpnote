@@ -18,7 +18,7 @@ const NotFound: () => React$Element<*>
 = () => (
   <Page>
     <Helmet title="tmp/note - Not Found" />
-    <Text>404 😅</Text>
+    <Text>404 <span role="img" aria-label=":)">😅</span></Text>
   </Page>
 )
 

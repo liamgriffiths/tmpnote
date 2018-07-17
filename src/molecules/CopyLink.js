@@ -17,8 +17,18 @@ const Container: (*) => React$Element<*>
   text-align: center;
   margin-bottom: 40px;
 
-  & input {
-    margin-top: 40px;
+  @media (min-width: 667px) {
+    grid-template-rows: 1fr 1fr 60px;
+  }
+
+  & textarea {
+    font-size: 16px;
+    font-weight: 200;
+
+    @media (min-width: 667px) {
+      font-size: 22px;
+      font-weight: 200;
+    }
   }
 `
 

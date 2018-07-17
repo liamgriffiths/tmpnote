@@ -83,6 +83,7 @@ const Screen: (Props) => React$Element<*>
   switch (state.screen) {
     case 'initial':
       fetchNote(params.id, hash.slice(1))
+      return <div />
     case 'fetching':
       return <div />
     case 'fetched':

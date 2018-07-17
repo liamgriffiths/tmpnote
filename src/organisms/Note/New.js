@@ -13,12 +13,11 @@ const Form: (*) => React$Element<*>
   display: grid;
   grid-template-rows: 1fr 60px;
   grid-gap: 20px;
-  margin: 0 auto;
   padding: 0;
   text-align: center;
 
   max-height: 60vh;
-  margin: auto;
+  margin: 20vh auto;
   width: 100%;
 `
 

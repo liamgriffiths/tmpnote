@@ -11,11 +11,14 @@ const Container: (*) => React$Element<*>
 = styled.div`
   padding: 0;
   text-align: center;
-  height: 70vh;
+  height: 100vh;
 
-  max-height: 70vh;
-  margin: auto;
+  margin: 10vh auto;
   width: 100%;
+
+  @media (min-width: 667px) {
+    margin: 20vh auto;
+  }
 
   & div {
     height: fit-content;

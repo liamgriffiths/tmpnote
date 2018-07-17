@@ -18,15 +18,18 @@ const Page: (*) => React$Element<*>
 
 const Container: (*) => React$Element<*>
 = styled.div`
-  height: calc(100% - 80px);
-
-  max-width: 800px;
-  margin: 60px auto 20px;
-  padding: 0 10px;
   display: flex;
+  height: 100%;
+  max-width: 800px;
+  padding: 0 10px;
+  margin: auto;
 
   & form {
-    height: 100%;
+    height: 35vh;
+
+    @media (min-width: 667px) {
+      height: 100%;
+    }
   }
 `
 
