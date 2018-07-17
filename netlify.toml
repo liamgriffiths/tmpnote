@@ -1,5 +1,5 @@
 [build]
-  Command = "npm i && npm run build && npm run build:lambda"
+  Command = "npm i && npm run build && npm run build:lambda && cp -r node_modules lambda"
   Functions = "lambda"
   Publish = "build"
 
