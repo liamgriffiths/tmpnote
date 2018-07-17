@@ -1,7 +1,13 @@
 // todo: add flow
+
+const { REDIS_PORT, REDIS_HOST, REDIS_AUTH } = process.env
+
 const uuid = require('uuid/v4')
 const Redis = require('ioredis')
-const redis = new Redis(process.env.REDIS_URL)
+const redis = new Redis(REDIS_PORT, REDIS_HOST, {
+  password: REDIS_AUTH,
+  lazyConnect: true,
+})
 
 const ONE_WEEK = 604800
 
@@ -27,6 +33,7 @@ const read = async ({ id }) => {
 
 const handlePost = async (event) => {
   try {
+    await redis.connect()
     const { action, payload } = JSON.parse(event.body)
     switch (action) {
       case 'read':
@@ -40,6 +47,8 @@ const handlePost = async (event) => {
     }
   } catch (err) {
     throw err
+  } finally {
+    redis.disconnect()
   }
 }
 
@@ -47,17 +56,15 @@ export const handler = (event, context, callback) => {
   if (event.httpMethod === 'POST') {
     handlePost(event)
       .then((res) => {
-        redis.disconnect()
         callback(null, {
           statusCode: 200,
           body: JSON.stringify(res),
         })
       })
       .catch((err) => {
-        redis.disconnect()
         callback(null, {
           statusCode: 500,
-          body: 'Something went wrong.',
+          body: err.message,
         })
       })
   } else {
