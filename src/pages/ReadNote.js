@@ -88,7 +88,7 @@ const Screen: (Props) => React$Element<*>
     case 'fetched':
       return <Note.Show note={state.note} />
     case 'error':
-      return <Message title="Error" body="Couldn't decrypt - but we delete the note anyway." />
+      return <Message title="Error" body="Couldn't decrypt - but we deleted the note anyway." />
     case 'not-found':
       return <Message title="Not Found" body="If you expected to see the note here, it may have already been read." />
     default:
