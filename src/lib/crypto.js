@@ -62,12 +62,3 @@ export const decrypt: ({ cipher: Base64, secret: Base64 }) => Utf8
   // return the utf8 message
   return encodeUTF8(bytes)
 }
-
-const demo = () => {
-  const { cipher, secret } = encrypt('hello world')
-  console.log(cipher, secret)
-  const message = decrypt({ cipher, secret })
-  console.log(message)
-}
-
-export default demo
