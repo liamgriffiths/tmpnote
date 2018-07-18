@@ -16,7 +16,7 @@ const Form: (*) => React$Element<*>
   padding: 0;
   text-align: center;
 
-  max-height: 60vh;
+  max-height: 50vh;
   margin: 20vh auto;
   width: 100%;
 `

@@ -17,6 +17,7 @@ const Message: (*) => React$Element<*>
 `
 
 type Props = {
+  safe?: true,
   title: string,
   body: string,
 }
@@ -24,6 +25,6 @@ type Props = {
 export default (props: Props): React$Element<*> => (
   <Message>
     <DisplayText>{props.title}</DisplayText>
-    <Text>{props.body}</Text>
+    <Text safe>{props.body}</Text>
   </Message>
 )

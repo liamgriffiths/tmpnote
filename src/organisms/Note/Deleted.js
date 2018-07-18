@@ -9,7 +9,7 @@ const Container: (*) => React$Element<*>
   padding: 0;
   text-align: center;
 
-  max-height: 60vh;
+  max-height: 50vh;
   margin: auto;
   width: 100%;
   max-width: 800px;

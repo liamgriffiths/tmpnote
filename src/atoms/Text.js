@@ -1,5 +1,6 @@
 // @flow
 
+import React from 'react'
 import styled from 'styled-components'
 
 const Text: (*) => React$Element<*>
@@ -14,7 +15,7 @@ const Text: (*) => React$Element<*>
   white-space: pre-wrap;
 
   a {
-    color: ${props => props.theme.primary(300)};
+    color: ${props => props.theme.primary(800)};
   }
 
   @media (max-width: 340px) {
@@ -22,4 +23,6 @@ const Text: (*) => React$Element<*>
   }
 `
 
-export default Text
+export default (props: { safe?: true, children?: * }) => (
+  props.safe ? <Text dangerouslySetInnerHTML={{ __html: props.children }} /> : <Text>{props.children}</Text>
+)

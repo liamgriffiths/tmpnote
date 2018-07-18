@@ -3,11 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "arson": "^0.2.6",
     "copy-to-clipboard": "^3.0.8",
     "hiredis": "^0.5.0",
     "ioredis": "^3.2.2",
-    "js-base64": "^2.4.6",
     "loadable-components": "^2.2.2",
     "netlify-lambda": "^0.4.0",
     "polished": "^1.9.3",
@@ -18,8 +16,9 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-values": "^0.2.2",
-    "sjcl": "^1.0.7",
     "styled-components": "^3.3.3",
+    "tweetnacl": "^1.0.0",
+    "tweetnacl-util": "^0.15.0",
     "uuid": "^3.3.2"
   },
   "scripts": {

@@ -61,14 +61,14 @@ type Props = {
   },
 }
 
-const fetchNote: Action<State, ({ id: string, password: string }) => Promise<void>>
-= ({ update, state }) => async ({ id, password }) => {
+const fetchNote: Action<State, ({ id: string, secret: string }) => Promise<void>>
+= ({ update, state }) => async ({ id, secret }) => {
   update({ screen: 'fetching' })
 
   try {
     const { note } = await api.read(id)
     if (note) {
-      const decrypted = decrypt(password, note)
+      const decrypted = decrypt({ secret, cipher: note })
       update({ screen: 'fetched', note: decrypted })
     } else {
       update({ screen: 'not-found' })
@@ -82,7 +82,7 @@ const Screen: (Props) => React$Element<*>
 = ({ state, update, match: { params }, location: { hash }}) => {
   switch (state.screen) {
     case 'initial':
-      fetchNote({ update, state })({ id: params.id, password: hash.slice(1) })
+      fetchNote({ update, state })({ id: params.id, secret: hash.slice(1) })
       return <div />
     case 'fetching':
       return <div />

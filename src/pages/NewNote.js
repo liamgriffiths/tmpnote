@@ -35,7 +35,7 @@ const Container: (*) => React$Element<*>
 
 type State =
   | {| screen: 'new' |}
-  | {| screen: 'created', id: string, password: string |}
+  | {| screen: 'created', id: string, secret: string |}
   | {| screen: 'deleted' |}
 
 type Props = {
@@ -45,9 +45,9 @@ type Props = {
 
 const createNote: Action<State, (string) => Promise<*>>
 = ({ update, state }) => async (note) => {
-  const { password, message } = encrypt(note)
-  const { id } = await api.create(message)
-  update({ screen: 'created', password, id })
+  const { cipher, secret } = encrypt(note)
+  const { id } = await api.create(cipher)
+  update({ screen: 'created', secret, id })
 }
 
 const deleteNote: Action<State, (string) => Promise<*>>
@@ -65,7 +65,7 @@ const Screen: (Props) => React$Element<*>
       return (
         <Note.Created
           id={state.id}
-          password={state.password}
+          secret={state.secret}
           onDelete={deleteNote({ update, state })} />
         )
     case 'deleted':

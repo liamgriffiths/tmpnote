@@ -12,14 +12,14 @@ import type { Update, Action } from '../lib/stateful'
 const Container: (*) => React$Element<*>
 = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 60px;
+  grid-template-rows: 1fr 100px 60px;
   grid-gap: 20px;
   padding: 0;
   text-align: center;
   margin-bottom: 40px;
 
   @media (min-width: 667px) {
-    grid-template-rows: 1fr 1fr 60px;
+    grid-template-rows: 1fr 120px 60px;
   }
 
   & textarea {

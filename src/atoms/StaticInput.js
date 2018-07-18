@@ -8,6 +8,7 @@ const StaticInput: (*) => *
   font-size: 22px;
   font-weight: 200;
   font-family: monospace;
+  word-break: break-all;
   margin: 0;
   padding: 11px;
   width: 100%;

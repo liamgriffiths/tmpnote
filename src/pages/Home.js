@@ -31,17 +31,21 @@ const Page: (*) => React$Element<*>
 const Container: (*) => React$Element<*>
 = styled.div`
   display: grid;
-  grid-template-rows: 10% 20% 1fr 60px;
+  grid-template-rows: 10% 10% 1fr 60px;
 
   max-width: 800px;
-  height: 60vh;
+  height: 70vh;
   margin: auto;
   padding: 0 10px;
+
+  @media (min-width: 667px) {
+    height: 50vh;
+  }
 
   & > button {
     grid-row: 4;
     max-width: 380px;
-    margin: 0 auto;
+    margin: 0px auto;
   }
 `
 
@@ -56,8 +60,10 @@ type Props = {
 
 const text = `Self-destructs when read.
 Self-destructs in 7 days.
-Encrypted with AES-256.
-No trackers or ads.`
+Encrypted with <a href="https://tweetnacl.js.org">TweetNaCL.js</a>.
+No trackers or ads.
+Open-source on <a href="https://github.com/liamgriffiths/tmpnote">GitHub</a>.
+`
 
 const openModal: Action<State, (Event) => void>
 = ({ update, state }) => (e) => {
@@ -81,6 +87,7 @@ const Home: (Props) => React$Element<*>
       <Container>
         <Logo />
         <Message
+          safe
           title="Create & Share Encrypted Notes"
           body={text} />
         <Button primary onClick={openModal({ update, state })}>

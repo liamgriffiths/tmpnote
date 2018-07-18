@@ -49,7 +49,7 @@ type State = 'initial' | 'submitting'
 
 type Props = {
   id: string,
-  password: string,
+  secret: string,
   onDelete: (string) => *,
   update: Update<State>,
   state: State,
@@ -62,9 +62,9 @@ const handleDelete: Action<State, ({ onDelete: *, id: string }) => void>
 }
 
 const Created: (Props) => React$Element<*>
-= ({ id, password, onDelete, update, state }) => (
+= ({ id, secret, onDelete, update, state }) => (
   <Container>
-    <CopyLink link={`${window.location.host}/n/${id}#${password}`} />
+    <CopyLink link={`${window.location.host}/n/${id}#${secret}`} />
 
     <a onClick={() => handleDelete({ update, state })({ onDelete, id })}>
       Changed your mind? Delete it Now.
