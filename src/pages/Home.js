@@ -45,7 +45,9 @@ const Container: (*) => React$Element<*>
   }
 `
 
-type State = 'initial' | 'modal-open'
+type State =
+  | {| modal: 'open', form: number |}
+  | {| modal: 'closed', form: number |}
 
 type Props = {
   update: Update<State>,
@@ -57,12 +59,16 @@ Self-destructs in 7 days.
 Encrypted with AES-256.
 No trackers or ads.`
 
-const onModalButtonClick = (update) => (e) => {
- update('modal-open')
+const openModal = ({ update, state }) => (e) => {
+ update({ modal: 'open', form: state.form + 1 })
  setTimeout(() => {
    const t = document.querySelector('textarea')
    if (t) t.focus()
  }, 300)
+}
+
+const closeModal = ({ update, state }) => (e) => {
+  update({ modal: 'closed', form: state.form })
 }
 
 const Home: (Props) => React$Element<*>
@@ -75,15 +81,15 @@ const Home: (Props) => React$Element<*>
         <Message
           title="Create & Share Encrypted Notes"
           body={text} />
-        <Button primary onClick={onModalButtonClick(update)}>
+        <Button primary onClick={openModal({ update, state })}>
           New Note
         </Button>
       </Container>
     </Page>
-    <Modal onClose={() => update('initial')} active={state === 'modal-open'}>
-      <NewNote />
+    <Modal onClose={closeModal} active={state.modal === 'open'}>
+      <NewNote key={state.form} />
     </Modal>
   </PageContainer>
 )
 
-export default stateful('initial')(Home)
+export default stateful({ modal: 'closed', form: 0 })(Home)
