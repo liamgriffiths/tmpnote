@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { StaticInput, Button } from '../atoms'
 import { Message } from '../molecules'
 import stateful from '../lib/stateful'
+import copy from 'copy-to-clipboard'
 
 import type { Update } from '../lib/stateful'
 
@@ -40,12 +41,10 @@ type Props = {
   state: State,
 }
 
-const handleSubmit: (Update<State>) => (*) => void
-= (update) => (e) => {
+const handleSubmit: (Update<State>) => (string) => (*) => void
+= (update) => (link) => (e) => {
   e.preventDefault()
-  const link = e.target.previousSibling
-  link.select()
-  document.execCommand('copy')
+  copy(link)
   update('copied')
   setTimeout(() => update('initial'), 2000)
 }
@@ -55,7 +54,7 @@ const CopyLink: (Props) => React$Element<*>
   <Container>
     <Message title="Created ✨" body="Share the following link." />
     <StaticInput defaultValue={link} />
-    <Button primary onClick={handleSubmit(update)}>
+    <Button primary onClick={handleSubmit(update)(link)}>
       { state === 'initial' ? 'Copy' : 'Copied' }
     </Button>
   </Container>
