@@ -2,9 +2,10 @@
 
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Logo: (*) => *
-= styled.a`
+= styled.div`
   font-family: 'Bungee Inline', cursive;
   font-size: 30px;
   text-decoration: none;
@@ -32,5 +33,9 @@ const Logo: (*) => *
   }
 `
 export default () => (
-  <Logo href="/">tmp/note</Logo>
+  <Logo>
+    <Link to="/">
+      tmp/note
+    </Link>
+ </Logo>
 )
