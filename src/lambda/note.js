@@ -16,6 +16,10 @@ const key = (uuid) => (
 )
 
 const create = async ({ note }) => {
+  if (Buffer.byteLength(note, 'utf8') > 10000) {
+    throw new Error('10kb limit');
+  }
+
   const id = uuid()
   await redis.set(key(id), note, 'NX', 'EX', ONE_WEEK)
   return { id }
@@ -35,6 +39,7 @@ const handlePost = async (event) => {
   try {
     await redis.connect()
     const { action, payload } = JSON.parse(event.body)
+
     switch (action) {
       case 'read':
         return await read(payload)
