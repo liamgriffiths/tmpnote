@@ -9,7 +9,7 @@ import { Modal, Button, Logo } from '../atoms'
 import { Message } from '../molecules'
 import { NewNote } from './index'
 
-import type { Update } from '../lib/stateful'
+import type { Update, Action } from '../lib/stateful'
 
 const PageContainer: (*) => React$Element<*>
 = styled.div`
@@ -59,7 +59,8 @@ Self-destructs in 7 days.
 Encrypted with AES-256.
 No trackers or ads.`
 
-const openModal = ({ update, state }) => (e) => {
+const openModal: Action<State, (Event) => void>
+= ({ update, state }) => (e) => {
  update({ modal: 'open', form: state.form + 1 })
  setTimeout(() => {
    const t = document.querySelector('textarea')
@@ -67,7 +68,8 @@ const openModal = ({ update, state }) => (e) => {
  }, 300)
 }
 
-const closeModal = ({ update, state }) => (e) => {
+const closeModal: Action<State, (Event) => void>
+= ({ update, state }) => (e) => {
   update({ modal: 'closed', form: state.form })
 }
 

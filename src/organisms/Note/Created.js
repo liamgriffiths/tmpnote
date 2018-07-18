@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { CopyLink } from '../../molecules'
 import stateful from '../../lib/stateful'
 
-import type { Update } from '../../lib/stateful'
+import type { Update, Action } from '../../lib/stateful'
 
 const Container: (*) => React$Element<*>
 = styled.div`
@@ -55,12 +55,18 @@ type Props = {
   state: State,
 }
 
+const handleDelete: Action<State, ({ onDelete: *, id: string }) => void>
+= ({ update, state }) => ({ onDelete, id }) => {
+  update('submitting')
+  onDelete(id)
+}
+
 const Created: (Props) => React$Element<*>
 = ({ id, password, onDelete, update, state }) => (
   <Container>
     <CopyLink link={`${window.location.host}/n/${id}#${password}`} />
 
-    <a onClick={() => update('submitting') && onDelete(id)}>
+    <a onClick={() => handleDelete({ update, state })({ onDelete, id })}>
       Changed your mind? Delete it Now.
     </a>
   </Container>

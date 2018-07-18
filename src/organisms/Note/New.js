@@ -6,7 +6,7 @@ import { pipe, path, isEmpty } from 'ramda'
 import { Textarea, Button } from '../../atoms'
 import stateful from '../../lib/stateful'
 
-import type { Update } from '../../lib/stateful'
+import type { Update, Action } from '../../lib/stateful'
 
 const Form: (*) => React$Element<*>
 = styled.form`
@@ -29,14 +29,14 @@ type Props = {
   state: State,
 }
 
-const handleChange: (Update<State>) => (*) => void
-= (update) => pipe(
+const handleChange: Action<State, (Event) => *>
+= ({ update }) => pipe(
   path(['target', 'value']),
   (val) => isEmpty(val) ? update('initial') : update('ready'),
 )
 
-const handleSubmit: (Update<State>) => ((string) => Promise<*>) => (*) => Promise<void>
-= (update) => (onSubmit) => async (e) => {
+const handleSubmit: Action<State, ({ e: *, onSubmit: * }) => Promise<void>>
+= ({ update, state }) => async ({ onSubmit, e }) => {
   e.preventDefault()
   const note = e.target.querySelector('textarea').value
   update('submitting')
@@ -46,15 +46,12 @@ const handleSubmit: (Update<State>) => ((string) => Promise<*>) => (*) => Promis
   }
 }
 
-const onMount = ({ update }) => {
-}
-
 const New: (Props) => React$Element<*>
 = ({ onSubmit, update, state }) => (
-  <Form onSubmit={handleSubmit(update)(onSubmit)} disabled={state === 'submitting'}>
+  <Form onSubmit={(e) => handleSubmit({ update, state })({ e, onSubmit})} disabled={state === 'submitting'}>
     <Textarea
       disabled={state === 'submitting'}
-      onChange={handleChange(update)}
+      onChange={handleChange({ update ,state })}
       placeholder="Say something nice..." />
     <Button primary disabled={state !== 'ready'}>
       Save
@@ -62,4 +59,4 @@ const New: (Props) => React$Element<*>
   </Form>
 )
 
-export default stateful('initial', onMount)(New)
+export default stateful('initial')(New)

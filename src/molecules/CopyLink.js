@@ -7,7 +7,7 @@ import { Message } from '../molecules'
 import stateful from '../lib/stateful'
 import copy from 'copy-to-clipboard'
 
-import type { Update } from '../lib/stateful'
+import type { Update, Action } from '../lib/stateful'
 
 const Container: (*) => React$Element<*>
 = styled.div`
@@ -41,8 +41,8 @@ type Props = {
   state: State,
 }
 
-const handleSubmit: (Update<State>) => (string) => (*) => void
-= (update) => (link) => (e) => {
+const copyLink: Action<State, (string) => (Event) => void>
+= ({ update, state }) => (link) => (e) => {
   e.preventDefault()
   copy(link)
   update('copied')
@@ -54,7 +54,7 @@ const CopyLink: (Props) => React$Element<*>
   <Container>
     <Message title="Created ✨" body="Share the following link." />
     <StaticInput defaultValue={link} />
-    <Button primary onClick={handleSubmit(update)(link)}>
+    <Button primary onClick={copyLink({ update, state })(link)}>
       { state === 'initial' ? 'Copy' : 'Copied' }
     </Button>
   </Container>

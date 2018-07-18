@@ -7,7 +7,7 @@ import { encrypt } from '../lib/crypto'
 import * as api from '../lib/api'
 import * as Note from '../organisms/Note'
 
-import type { Update } from '../lib/stateful'
+import type { Update, Action } from '../lib/stateful'
 
 const Page: (*) => React$Element<*>
 = styled.div`
@@ -43,27 +43,31 @@ type Props = {
   state: State,
 }
 
+const createNote: Action<State, (string) => Promise<*>>
+= ({ update, state }) => async (note) => {
+  const { password, message } = encrypt(note)
+  const { id } = await api.create(message)
+  update({ screen: 'created', password, id })
+}
+
+const deleteNote: Action<State, (string) => Promise<*>>
+= ({ update, state }) => async (id) => {
+  await api.destroy(id)
+  update({ screen: 'deleted' })
+}
+
 const Screen: (Props) => React$Element<*>
 = ({ update, state }) => {
-
-  const createNote: (string) => Promise<*>
-  = async (note) => {
-    const { password, message } = encrypt(note)
-    const { id } = await api.create(message)
-    update({ screen: 'created', password, id })
-  }
-
-  const deleteNote: (string) => Promise<*>
-  = async (id) => {
-    await api.destroy(id)
-    update({ screen: 'deleted' })
-  }
-
   switch (state.screen) {
     case 'new':
-      return <Note.New onSubmit={createNote} />
+      return <Note.New onSubmit={createNote({ update, state })} />
     case 'created':
-      return <Note.Created id={state.id} password={state.password} onDelete={deleteNote} />
+      return (
+        <Note.Created
+          id={state.id}
+          password={state.password}
+          onDelete={deleteNote({ update, state })} />
+        )
     case 'deleted':
       return <Note.Deleted />
     default:

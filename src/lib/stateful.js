@@ -3,17 +3,13 @@
 import React from 'react'
 
 export type Update<State> = (State) => Promise<State>
-export type Mounted<State> = ({ update: Update<State> }) => *
+export type Action<State, Fn> = ({ state: State, update: Update<State> }) => Fn
 
-const stateful: (*, ?Mounted<*>) => (*) => *
+const stateful: (*) => (*) => *
 = (initialState, mounted) => (Component) => {
   return class StatefulComponent extends React.Component<*, *> {
     state = {
       store: initialState,
-    }
-
-    componentDidMount() {
-      if (mounted) mounted({ update: this.update })
     }
 
     update: Update<*>

@@ -10,7 +10,7 @@ import { Logo } from '../atoms'
 import { Message } from '../molecules'
 import * as Note from '../organisms/Note'
 
-import type { Update } from '../lib/stateful'
+import type { Update, Action } from '../lib/stateful'
 
 const Page: (*) => React$Element<*>
 = styled.div`
@@ -61,28 +61,28 @@ type Props = {
   },
 }
 
+const fetchNote: Action<State, ({ id: string, password: string }) => Promise<void>>
+= ({ update, state }) => async ({ id, password }) => {
+  update({ screen: 'fetching' })
+
+  try {
+    const { note } = await api.read(id)
+    if (note) {
+      const decrypted = decrypt(password, note)
+      update({ screen: 'fetched', note: decrypted })
+    } else {
+      update({ screen: 'not-found' })
+    }
+  } catch (err) {
+    update({ screen: 'error', error: err })
+  }
+}
+
 const Screen: (Props) => React$Element<*>
 = ({ state, update, match: { params }, location: { hash }}) => {
-
-  const fetchNote = async (id, password) => {
-    update({ screen: 'fetching' })
-
-    try {
-      const { note } = await api.read(id)
-      if (note) {
-        const decrypted = decrypt(password, note)
-        update({ screen: 'fetched', note: decrypted })
-      } else {
-        update({ screen: 'not-found' })
-      }
-    } catch (err) {
-      update({ screen: 'error', error: err })
-    }
-  }
-
   switch (state.screen) {
     case 'initial':
-      fetchNote(params.id, hash.slice(1))
+      fetchNote({ update, state })({ id: params.id, password: hash.slice(1) })
       return <div />
     case 'fetching':
       return <div />
