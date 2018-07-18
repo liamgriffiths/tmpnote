@@ -52,7 +52,7 @@ const copyLink: Action<State, (string) => (Event) => void>
 const CopyLink: (Props) => React$Element<*>
 = ({ link, update, state }) => (
   <Container>
-    <Message title="Created ✨" body="Share the following link." />
+    <Message title="Created." body="Share the following link.✨" />
     <StaticInput defaultValue={link} />
     <Button primary onClick={copyLink({ update, state })(link)}>
       { state === 'initial' ? 'Copy' : 'Copied' }

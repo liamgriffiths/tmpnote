@@ -31,7 +31,7 @@ type Props = {
 const Deleted: (Props) => React$Element<*>
 = (props) => (
   <Container>
-    <Message title="Deleted." body="It's now gone forever. 💔" />
+    <Message title="Deleted." body="It's gone forever now. 💔" />
   </Container>
 )
 
