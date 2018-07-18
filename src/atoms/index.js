@@ -1,12 +1,21 @@
 // @flow
 
-import loadable from 'loadable-components'
+import Button from './Button'
+import Textarea from './Textarea'
+import Logo from './Logo'
+import DisplayText from './DisplayText'
+import Text from './Text'
+import Label from './Label'
+import StaticInput from './StaticInput'
+import Modal from './Modal'
 
-export const Button = loadable(() => import('./Button'))
-export const Textarea = loadable(() => import('./Textarea'))
-export const Logo = loadable(() => import('./Logo'))
-export const DisplayText = loadable(() => import('./DisplayText'))
-export const Text = loadable(() => import('./Text'))
-export const Label = loadable(() => import('./Label'))
-export const StaticInput = loadable(() => import('./StaticInput'))
-export const Modal = loadable(() => import('./Modal'))
+export {
+  Button,
+  Textarea,
+  Logo,
+  DisplayText,
+  Text,
+  Label,
+  StaticInput,
+  Modal,
+}

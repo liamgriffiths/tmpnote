@@ -2,5 +2,10 @@
 
 import loadable from 'loadable-components'
 
-export const Message = loadable(() => import('./Message'))
-export const CopyLink = loadable(() => import('./CopyLink'))
+import Message from './Message'
+const CopyLink = loadable(() => import('./CopyLink'))
+
+export {
+  Message,
+  CopyLink,
+}
