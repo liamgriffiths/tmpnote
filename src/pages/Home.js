@@ -86,7 +86,7 @@ const Home: (Props) => React$Element<*>
         </Button>
       </Container>
     </Page>
-    <Modal onClose={closeModal} active={state.modal === 'open'}>
+    <Modal onClose={closeModal({ update, state })} active={state.modal === 'open'}>
       <NewNote key={state.form} />
     </Modal>
   </PageContainer>
