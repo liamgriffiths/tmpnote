@@ -1,9 +1,7 @@
-# tmpnote :cherries:
+# [tmpnote](https://tmpnote.xyz) :cherries:
 
 
 A simple clone of the service [privnote.com](https://privnote.com/).
-
-It's currently deployed to [tmpnote.xyz](tmpnote.xyz) - check it out :smile:
 
 I made this one as a little side-project to experiemnt with a few technologies I
 wanted to learn more about, primarily:
@@ -37,3 +35,7 @@ $ REDIS_AUTH= REDIS_HOST=127.0.0.1 REDIS_PORT=6379 npm run start:lambda
 
 - [ ] _TODO: Make netlify install button_
 - [ ] _TODO: Instructions to setup a redis server_
+
+## Contributing :octocat:
+
+PRs and issues welcome, thanks!
