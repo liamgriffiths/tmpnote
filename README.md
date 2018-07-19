@@ -1,4 +1,4 @@
-# tmpnote
+# tmpnote :cherries:
 
 
 A simple clone of the service [privnote.com](https://privnote.com/).
