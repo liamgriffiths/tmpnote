@@ -35,5 +35,5 @@ $ REDIS_AUTH= REDIS_HOST=127.0.0.1 REDIS_PORT=6379 npm run start:lambda
 
 ## Deployment
 
-_TODO (Make netlify install button_
-_TODO (Instructions to setup a redis server)_
+- [ ] _TODO: Make netlify install button_
+- [ ] _TODO: Instructions to setup a redis server_
