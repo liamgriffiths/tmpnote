@@ -35,5 +35,21 @@ $ REDIS_AUTH= REDIS_HOST=127.0.0.1 REDIS_PORT=6379 npm run start:lambda
 
 ## Deployment
 
-_TODO (Make netlify install button_
-_TODO (Instructions to setup a redis server)_
+### Setup a [redis](https://redis.io/) server
+
+_TODO:_ fill this out a little more :)
+
+1. Setup a digital ocean droplet
+2. Install redis
+3. Configure redis
+4. Configure `ufw`
+5. Setup "Floating IP address"
+
+### Deploy web app to netlify
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/liamgriffiths/tmpnote)
+
+After deploying, setup these environment vars to redis server:
+  * `REDIS_HOST` - the IP address or name of host where redis lives.
+  * `REDIS_PORT` - the port the server is listening on (6379 is the default).
+  * `REDIS_AUTH` - your redis auth password.

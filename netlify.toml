@@ -7,3 +7,8 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[template.environment]
+  REDIS_HOST = "IP address or host where your redis server lives"
+  REDIS_PORT = "6379"
+  REDIS_AUTH = "Password for redis"
