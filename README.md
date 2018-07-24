@@ -1,9 +1,7 @@
-# tmpnote
+# [tmpnote](https://tmpnote.xyz) :cherries:
 
 
 A simple clone of the service [privnote.com](https://privnote.com/).
-
-It's currently deployed to [tmpnote.xyz](tmpnote.xyz) - check it out :smile:
 
 I made this one as a little side-project to experiemnt with a few technologies I
 wanted to learn more about, primarily:
@@ -53,3 +51,8 @@ After deploying, setup these environment vars to redis server:
   * `REDIS_HOST` - the IP address or name of host where redis lives.
   * `REDIS_PORT` - the port the server is listening on (6379 is the default).
   * `REDIS_AUTH` - your redis auth password.
+
+## Contributing :octocat:
+
+PRs and issues welcome, thanks!
+>>>>>>> c39e2fc6f5757e06ba53015ec3e33f4ec81a953e
