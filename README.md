@@ -55,4 +55,3 @@ After deploying, setup these environment vars to redis server:
 ## Contributing :octocat:
 
 PRs and issues welcome, thanks!
->>>>>>> c39e2fc6f5757e06ba53015ec3e33f4ec81a953e
