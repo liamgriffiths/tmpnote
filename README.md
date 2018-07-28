@@ -39,6 +39,8 @@ An easy way to get this going is to setup a little [Digital Ocean](https://www.d
 
 ### Deploy web app to [Netlify](https://www.netlify.com/)
 
+An easy way to deploy the website is fork this repo, then use the following button:
+
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/liamgriffiths/tmpnote)
 
 After deploying, setup these environment vars to redis server:
