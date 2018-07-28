@@ -33,15 +33,9 @@ $ REDIS_AUTH= REDIS_HOST=127.0.0.1 REDIS_PORT=6379 npm run start:lambda
 
 ## Deployment
 
-### Setup a [redis](https://redis.io/) server
+### Setup a [Redis](https://redis.io/) server
 
-_TODO:_ fill this out a little more :)
-
-1. Setup a digital ocean droplet
-2. Install redis
-3. Configure redis
-4. Configure `ufw`
-5. Setup "Floating IP address"
+An easy way to get this going is to setup a little [Digital Ocean](https://www.digitalocean.com) droplet ($5/mo) and follow [these instructions](https://www.digitalocean.com/community/tutorials/how-to-install-redis-from-source-on-ubuntu-18-04). Make sure to setup the `auth` to password protect it and a [Floating IP](https://www.digitalocean.com/docs/networking/floating-ips/) (free) so you can always access the the server from a static IP.
 
 ### Deploy web app to netlify
 
