@@ -37,7 +37,7 @@ $ REDIS_AUTH= REDIS_HOST=127.0.0.1 REDIS_PORT=6379 npm run start:lambda
 
 An easy way to get this going is to setup a little [Digital Ocean](https://www.digitalocean.com) droplet ($5/mo) and follow [these instructions](https://www.digitalocean.com/community/tutorials/how-to-install-redis-from-source-on-ubuntu-18-04). Make sure to setup the `auth` to password protect it and a [Floating IP](https://www.digitalocean.com/docs/networking/floating-ips/) (free) so you can always access the the server from a static IP.
 
-### Deploy web app to netlify
+### Deploy web app to [Netlify](https://www.netlify.com/)
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/liamgriffiths/tmpnote)
 
