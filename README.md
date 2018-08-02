@@ -1,4 +1,4 @@
-# [tmpnote](https://tmpnote.xyz) :cherries:
+# [tmpnote](https://tmpnote.xyz)
 
 
 A simple clone of the service [privnote.com](https://privnote.com/).
