@@ -9,9 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/uuid": "^8.3.4",
+    "autoprefixer": "^10.4.7",
+    "ioredis": "^5.0.6",
     "next": "12.1.6",
+    "postcss": "^8.4.14",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "tailwindcss": "^3.1.1",
+    "tweetnacl": "^1.0.3",
+    "tweetnacl-util": "^0.15.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/node": "17.0.41",
