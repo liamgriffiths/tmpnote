@@ -2,44 +2,31 @@
   "name": "tmpnote",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "copy-to-clipboard": "^3.0.8",
-    "hiredis": "^0.5.0",
-    "ioredis": "^3.2.2",
-    "loadable-components": "^2.2.3",
-    "netlify-lambda": "^0.4.0",
-    "polished": "^1.9.3",
-    "ramda": "^0.25.0",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "react-helmet": "^5.2.0",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
-    "react-snap": "^1.23.0",
-    "styled-components": "^3.4.10",
-    "tweetnacl": "^1.0.1",
-    "tweetnacl-util": "^0.15.0",
-    "uuid": "^3.3.2"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "start:lambda": "netlify-lambda serve src/lambda",
-    "build": "react-scripts build",
-    "postbuild": "react-snap",
-    "build:lambda": "netlify-lambda build src/lambda",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "flow": "flow"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@types/uuid": "^8.3.4",
+    "autoprefixer": "^10.4.7",
+    "ioredis": "^5.0.6",
+    "next": "12.1.6",
+    "postcss": "^8.4.14",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "tailwindcss": "^3.1.1",
+    "tweetnacl": "^1.0.3",
+    "tweetnacl-util": "^0.15.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "flow-bin": "^0.76.0"
-  },
-  "proxy": {
-    "/.netlify/functions": {
-      "target": "http://localhost:9000",
-      "pathRewrite": {
-        "^/\\.netlify/functions": ""
-      }
-    }
+    "@types/node": "17.0.41",
+    "@types/react": "18.0.12",
+    "@types/react-dom": "18.0.5",
+    "eslint": "8.17.0",
+    "eslint-config-next": "12.1.6",
+    "typescript": "4.7.3"
   }
 }
