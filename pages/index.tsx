@@ -1,8 +1,8 @@
 import { useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import type { NextPage } from "next";
-import Head from "next/head";
 
-import Logo from "../components/Logo";
+import Page from "../components/Page";
 import Start from "../components/Start";
 import Create from "../components/Create";
 import Share from "../components/Share";
@@ -28,42 +28,37 @@ type Destroyed = {
 
 type State = Initial | Started | Created | Destroyed;
 
-const Home: NextPage = () => {
-  const [state, setState] = useState<State>({ status: "initial" });
+const content = (state: State, setState: Dispatch<SetStateAction<State>>) => {
   const status = state.status;
 
-  return (
-    <>
-      <Head>
-        <title>tmpnote | Create & Share Encrypted Notes</title>
-        <meta name="description" content="Create & Share Encrypted Notes" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+  switch (status) {
+    case "initial":
+      return <Start onStart={() => setState({ status: "started" })} />;
+    case "started":
+      return (
+        <Create
+          onSuccess={(id, link) => setState({ status: "created", id, link })}
+        />
+      );
+    case "created":
+      return (
+        <Share
+          id={state.id}
+          link={state.link}
+          onDestroySuccess={() => setState({ status: "destroyed" })}
+        />
+      );
+    case "destroyed":
+      return <GoneForever />;
+    default:
+      return <></>;
+  }
+};
 
-      <main className="flex flex-col h-screen">
-        <div className="flex flex-col justify-center items-center h-1/5">
-          <Logo />
-        </div>
+const Home: NextPage = () => {
+  const [state, setState] = useState<State>({ status: "initial" });
 
-        {status === "initial" && (
-          <Start onStart={() => setState({ status: "started" })} />
-        )}
-        {status === "started" && (
-          <Create
-            onSuccess={(id, link) => setState({ status: "created", id, link })}
-          />
-        )}
-        {status === "created" && (
-          <Share
-            id={state.id}
-            link={state.link}
-            onDestroySuccess={() => setState({ status: "destroyed" })}
-          />
-        )}
-        {status === "destroyed" && <GoneForever />}
-      </main>
-    </>
-  );
+  return <Page>{content(state, setState)}</Page>;
 };
 
 export default Home;
