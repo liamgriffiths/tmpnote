@@ -40,8 +40,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <div className="border-red-600 border p-4 m-4">
+      <main className="flex flex-col h-screen">
+        <div className="flex flex-col justify-center items-center h-1/5">
           <Logo />
         </div>
 

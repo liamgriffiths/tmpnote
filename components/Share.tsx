@@ -51,22 +51,26 @@ const Share = (props: Props) => {
   }[destroyState];
 
   return (
-    <div className="border-blue-600 border p-4 m-4">
-      <h1>Created.</h1>
-      <h2>Share the following link</h2>
-      <textarea readOnly contentEditable={false} value={props.link} />
+    <div className="flex flex-col items-center">
+      <h2>Use this link to share your note</h2>
+      <textarea
+        className="ring-2 ring-green-500 ring-offset-2 ring-offset-green-300 bg-green-50 p-4 m-4 rounded w-11/12 max-w-4xl h-32 fg-black text-xl drop-shadow-2xl"
+        readOnly
+        contentEditable={false}
+        value={props.link}
+      />
       <button
         onClick={onCopyClick}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-blue-500 hover:bg-blue-700 text-white text-xl font-medium py-2 px-4 m-4 rounded drop-shadow-2xl w-80 h-16"
       >
         {copyLabel}
       </button>
-      <button
+      <a
         onClick={onDestroyClick}
-        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        className="text-red-500 hover:bg-red-500 hover:text-white hover:drop-shadow-2xl cursor-pointer font-medium py-2 px-4 rounded m-10"
       >
         {destroyLabel}
-      </button>
+      </a>
     </div>
   );
 };

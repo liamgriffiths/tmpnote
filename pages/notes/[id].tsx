@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import Head from "next/head";
 import type { NextPage } from "next";
 import { GetServerSideProps } from "next";
+
+import Logo from "../../components/Logo";
 import { newId, read } from "../../lib/db";
 import { decrypt } from "../../lib/crypto";
-// import Head from 'next/head'
-// import Image from 'next/image'
-// import styles from '../styles/Home.module.css'
-
-// get the static props on the server
-// decode on the client!
 
 type Props = {
   cipher: string | null;
@@ -39,7 +36,25 @@ const Show: NextPage<Props> = (props) => {
 
   if (!props.cipher) return <p>No cipher found</p>;
 
-  return <pre>{plaintext}</pre>;
+  return (
+    <>
+      <Head>
+        <title>tmpnote | Create & Share Encrypted Notes</title>
+        <meta name="description" content="Create & Share Encrypted Notes" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className="flex flex-col h-screen">
+        <div className="flex flex-col justify-center items-center h-1/5">
+          <Logo />
+        </div>
+
+        <div className="flex flex-col justify-center items-center">
+          <pre className="w-11/12 max-w-4xl h-80 bg-slate-50 p-4 m-4 drop-shadow-2xl rounded">{plaintext}</pre>
+        </div>
+      </main>
+    </>
+  );
 };
 
 export default Show;

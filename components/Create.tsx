@@ -71,15 +71,16 @@ const Create = (props: Props) => {
   }[state.status];
 
   return (
-    <form className="border-blue-600 border p-4 m-4" onSubmit={onSubmit}>
+    <form className="flex flex-col items-center" onSubmit={onSubmit}>
       <textarea
-        className="bg-gray-300 border-gray-600 border-b p-4 m-4 rounded fg-black"
+        className="bg-zinc-50 p-4 m-4 rounded w-11/12 max-w-4xl h-80 fg-black text-xl drop-shadow-2xl"
         name="note"
         placeholder="Say something nice..."
         disabled={disabled}
+        autoFocus
       />
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-blue-500 hover:bg-blue-700 text-white text-xl font-medium py-2 px-4 m-4 rounded drop-shadow-2xl w-80 h-16"
         type="submit"
         disabled={disabled}
       >
