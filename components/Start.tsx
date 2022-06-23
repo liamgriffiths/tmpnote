@@ -20,7 +20,7 @@ const Start = (props: Props) => {
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="font-thin text-5xl m-4">Create & Share Encrypted Notes</h1>
+      <h1 className="font-thin text-5xl m-4 text-center">Create & Share Encrypted Notes</h1>
 
       <div className="text-center m-10 font-mono">
         <div>Self-destructs when read.</div>
